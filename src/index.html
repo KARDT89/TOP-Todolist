@@ -1,29 +1,44 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>TOP - Todolist</title>
-</head>
-<body>
+  </head>
+  <body>
     <!-- <header class="navbar">navbar</header> -->
     <div class="container">
-        <div class="panel">
-            <form id="project" method="get">
-                <label for="project-title">Add Project: </label>
-                <input id="project-title" name="pName"/>
-                <button type="submit">Add Project</button>
-            </form>
-            <ul class="project-list"></ul>
-            <button id="show-all-todos">Show All Todos</button>
-        </div>
-        
-        <div class="dashboard">
-            <ul class="todo-list">
-            </ul>
-        </div>
+      <div class="panel">
+        <form id="project" method="get">
+          <label for="project-title">Add Project: </label>
+          <input id="project-title" name="pName" />
+          <button type="submit">Add Project</button>
+        </form>
+        <ul class="project-list"></ul>
+        <button id="show-all-todos">Show All Todos</button>
+      </div>
+
+      <div class="dashboard">
+        <ul class="todo-list"></ul>
+        <dialog id="project-dialog">
+          <form id="project-form" method="dialog">
+            <p>
+              <label>
+                New Project Name:
+                <input type="text" name="pName" required/>
+              </label>
+            </p>
+            <div>
+              <input type="button" id="project-edit-cancel" value="Cancel" />
+              <input type="submit" id="project-edit-confirm" value="Confirm" />
+            </div>
+          </form>
+        </dialog>
+      </div>
     </div>
-</body>
+  </body>
 </html>
