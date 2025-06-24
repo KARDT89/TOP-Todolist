@@ -1,0 +1,25 @@
+/* @import 'normalize.css';
+
+body {
+    color: white;
+}
+
+
+.navbar{
+    background-color: rgb(0, 0, 0);
+}
+
+.container{
+    width: 100vw;
+    display: flex;
+}
+
+.panel {
+    width: 20%;
+    background-color: rgb(37, 37, 37);
+}
+
+.dashboard{
+    width: 80%;
+    background-color: rgb(95, 95, 97);
+} */

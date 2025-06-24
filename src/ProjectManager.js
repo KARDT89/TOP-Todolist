@@ -1,7 +1,7 @@
 import Project from "./Projects.js";
 import Todo from "./Todo.js";
 
-class ProjectManager {
+export default class ProjectManager {
   constructor() {
     this.allProjects = [];
   }
@@ -21,9 +21,9 @@ class ProjectManager {
   }
 
   // add a todo
-  addTodo(title, content, pname = "default") {
+  addTodo(title, description, pname = "default") {
     let currentProject = this.searchProjectByName(pname);
-    const newTodo = new Todo(title, content);
+    const newTodo = new Todo(title, description);
     currentProject.todos.push(newTodo);
     
   }
@@ -40,15 +40,15 @@ class ProjectManager {
     return this.allProjects.find((project) => project.projectName === name);
   }
   
+  searchProjectById(id) {
+    return this.allProjects.find((project) => project.projectId === id);
+  }
+
+  //edit project name
+  editProject(id, name) {
+    const currentProject = this.searchProjectById(id)
+    currentProject.projectName = name
+  }
+  
 }
 
-const test = new ProjectManager();
-test.addProject();
-test.addProject("project-X");
-test.addProject("project-Z");
-test.addTodo("todo1", "ddes1", "project-X");
-test.addTodo("todo69", "ddes1", "project-Z");
-test.addTodo("deftodo1", "defddes1", "default");
-test.addTodo("todo2", "des2", "project-X");
-// test.deleteTodo("todo2", "project-X");
-test.deleteProject("project-X")

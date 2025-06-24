@@ -8,6 +8,22 @@
     <title>TOP - Todolist</title>
 </head>
 <body>
-    <h1>hello world</h1>
+    <!-- <header class="navbar">navbar</header> -->
+    <div class="container">
+        <div class="panel">
+            <form id="project" method="get">
+                <label for="project-title">Add Project: </label>
+                <input id="project-title" name="pName"/>
+                <button type="submit">Add Project</button>
+            </form>
+            <ul class="project-list"></ul>
+            <button id="show-all-todos">Show All Todos</button>
+        </div>
+        
+        <div class="dashboard">
+            <ul class="todo-list">
+            </ul>
+        </div>
+    </div>
 </body>
 </html>
