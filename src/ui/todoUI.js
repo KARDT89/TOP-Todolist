@@ -12,6 +12,7 @@ export function fetchTodosByProjectId(projectId) {
   let h3 = document.createElement("h3");
   h3.innerHTML = currentProject.projectName;
   currentProject.todos.forEach((todo) => {
+    setCurrentProjectId = currentProject.projectId
     let div = document.createElement("div");
     div.classList.add("todo-card", "todo-card-default");
     let title = document.createElement("h1");
@@ -25,7 +26,6 @@ export function fetchTodosByProjectId(projectId) {
     let span1 = document.createElement("span");
     let span2 = document.createElement("span");
     let span3 = document.createElement("span");
-    let span4 = document.createElement("span");
   
     let markAsCompleted = document.createElement("p");
     markAsCompleted.innerText = "Mark as Completed"
@@ -96,8 +96,8 @@ export function fetchAllTodos() {
     // li.classList.add("todo-card-compact");
     let h3 = document.createElement("h3");
     h3.innerHTML = project.projectName;
-
     project.todos.forEach((todo) => {
+      
       let div = document.createElement("div");
       div.classList.add("todo-card", "todo-card-compact");
       let p = document.createElement("p");
@@ -155,6 +155,7 @@ function toggleTodo(TodoId){
 
 function toggleTodo2(TodoId){
   app.toggleTodo(TodoId)
+  fetchTodosByProjectId(setCurrentProjectId)
   app.saveToLocalStorage();
 }
 
@@ -219,7 +220,7 @@ editTodoForm.addEventListener("submit", (e) => {
     isCompleted
   );
   app.saveToLocalStorage();
-  fetchAllTodos();
+  fetchTodosByProjectId(setCurrentProjectId)
   editTodoDialog.close();
 });
 

@@ -9,6 +9,7 @@ document.querySelector("#project").addEventListener("submit", (e) => {
   app.addProject(pName);
   app.saveToLocalStorage();
   fetchProjects();
+  fetchAllTodos();
 });
 
 export function fetchProjects() {
