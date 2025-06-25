@@ -32,7 +32,7 @@ export function fetchProjects() {
       fetchTodosByProjectId(project.projectId)
     );
     deleteBtn.addEventListener("click", () => deleteProject(project.projectId));
-    editBtn.addEventListener("click", () => {
+    editBtn.addEventListener("click", function () {
       projectModal(editBtn.dataset.id);
     });
   });
@@ -49,6 +49,9 @@ function editProject(id, name) {
   fetchAllTodos();
 }
 
+const form = document.querySelector("#project-form")
+
+
 function projectModal(projectId) {
     console.log(projectId);
     
@@ -56,13 +59,17 @@ function projectModal(projectId) {
     const projectEditCancelBtn = dialog.querySelector("#project-edit-cancel");
 
     dialog.show()
-    document.querySelector("#project-form").addEventListener("submit", (e) => {
-        // e.preventDefault();
+    
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
         const newProjectName = e.target["pName"].value;
+        console.log("Submitting form for ID:", projectId);
+        console.log("New name:", newProjectName);
         editProject(projectId, newProjectName);
         dialog.close();
     });
-    projectEditCancelBtn.addEventListener("click", () => {
-        dialog.close();
+    projectEditCancelBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        dialog.close(); 
     });
 }

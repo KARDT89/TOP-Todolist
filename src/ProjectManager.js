@@ -23,19 +23,41 @@ export default class ProjectManager {
   }
 
   // add a todo
-  addTodo(title, description, pname = "default") {
-    let currentProject = this.searchProjectByName(pname);
-    const newTodo = new Todo(title, description);
+  addTodo(title, description, date, priority, projectId, isCompleted) {
+    let currentProject = this.searchProjectById(projectId);
+    const newTodo = new Todo(
+      title,
+      description,
+      date,
+      priority,
+      projectId,
+      isCompleted
+    );
     currentProject.todos.push(newTodo);
+    console.log(this.allProjects);
   }
 
   // delete a todo
-  deleteTodo(id, pname = "default") {
-    let currentProject = this.searchProjectByName(pname);
+  deleteTodo(id, projectId) {
+    let currentProject = this.searchProjectById(projectId);
     currentProject.todos = currentProject.todos.filter(
-      (todo) => todo.title !== id
+      (todo) => todo.id !== id
     );
     console.log(currentProject);
+  }
+
+  editTodo(
+    todoId,
+    currentProject,
+    title,
+    description,
+    date,
+    priority,
+    projectId,
+    isCompleted
+  ) {
+    this.deleteTodo(todoId, currentProject);
+    this.addTodo(title, description, date, priority, projectId, isCompleted);
   }
 
   // search todo by name (later id)
@@ -51,6 +73,6 @@ export default class ProjectManager {
   editProject(id, name) {
     const currentProject = this.searchProjectById(id);
     currentProject.projectName = name;
-    console.log(this.allProjects);
+    // console.log(this.allProjects);
   }
 }
