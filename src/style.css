@@ -148,6 +148,28 @@ h3{
     
 }
 
+dialog{
+    /* display: absolute; */
+    bottom: 10vh;
+    right: auto;
+    width: 17vw;
+    padding: 2px;
+}
+
+form > label{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.2rem;
+    flex-wrap: wrap;
+}
+
+form > div{
+    display: flex;
+    justify-content: space-around;
+}
+
 .todo-list{
     display: flex;
     flex-direction: column;

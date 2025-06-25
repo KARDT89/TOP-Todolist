@@ -80,7 +80,7 @@ export function fetchTodosByProjectId(projectId) {
     deleteBtn.addEventListener("click", () => {
       app.deleteTodo(todo.id, todo.project);
       app.saveToLocalStorage();
-      fetchAllTodos();
+      fetchTodosByProjectId(setCurrentProjectId)
     });
   });
   todoList.appendChild(h3);
@@ -198,6 +198,7 @@ todoForm.addEventListener("submit", (e) => {
   app.addTodo(title, description, date, priority, project, isCompleted);
   app.saveToLocalStorage();
   fetchAllTodos();
+  // fetchTodosByProjectId(setCurrentProjectId)
   todoDialog.close();
 });
 

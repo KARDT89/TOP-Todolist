@@ -33,7 +33,7 @@ export default class ProjectManager {
       projectId,
       isCompleted
     );
-    currentProject.todos.push(newTodo);
+    currentProject.todos.unshift(newTodo);
     console.log(this.allProjects);
   }
 
