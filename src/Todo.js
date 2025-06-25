@@ -9,7 +9,7 @@ export default class Todo {
     this.isCompleted = isCompleted;
   }
 
-  toggleComplete() {
+  toggleTodo() {
     this.isCompleted = !this.isCompleted;
   }
 }

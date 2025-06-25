@@ -49,27 +49,26 @@ function editProject(id, name) {
   fetchAllTodos();
 }
 
-const form = document.querySelector("#project-form")
-
+const form = document.querySelector("#project-form");
+let setGlobalProjectId = null;
+const dialog = document.getElementById("project-dialog");
+const projectEditCancelBtn = dialog.querySelector("#project-edit-cancel");
 
 function projectModal(projectId) {
-    console.log(projectId);
-    
-    const dialog = document.getElementById("project-dialog");
-    const projectEditCancelBtn = dialog.querySelector("#project-edit-cancel");
+  setGlobalProjectId = projectId;
 
-    dialog.show()
-    
-    form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        const newProjectName = e.target["pName"].value;
-        console.log("Submitting form for ID:", projectId);
-        console.log("New name:", newProjectName);
-        editProject(projectId, newProjectName);
-        dialog.close();
-    });
-    projectEditCancelBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        dialog.close(); 
-    });
+  dialog.show();
 }
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const newProjectName = e.target["pName"].value;
+  console.log("Submitting form for ID:", setGlobalProjectId);
+  console.log("New name:", newProjectName);
+  editProject(setGlobalProjectId, newProjectName);
+  dialog.close();
+});
+projectEditCancelBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  dialog.close();
+});

@@ -22,11 +22,11 @@ export function fetchTodosByProjectId(projectId) {
     let editBtn = document.createElement("button");
     let deleteBtn = document.createElement("button");
     editBtn.innerText = "Edit Todo";
-    editBtn.dataset.id = todo.id; 
+    editBtn.dataset.id = todo.id;
     deleteBtn.innerText = "Delete Todo";
     deleteBtn.dataset.id = todo.id;
     isCompleted.type = "checkbox";
-    isCompleted.value = todo.isCompleted;
+    isCompleted.checked = todo.isCompleted;
     title.textContent = todo.title;
     id.textContent = todo.id;
     description.textContent = todo.description;
@@ -45,6 +45,9 @@ export function fetchTodosByProjectId(projectId) {
       editTodo(todo.id);
       setCurrentProjectId = todo.project;
     });
+    isCompleted.addEventListener("click", () => {
+      toggleTodo(todo.id)
+    });
     deleteBtn.addEventListener("click", () => {
       app.deleteTodo(todo.id, todo.project);
       fetchAllTodos();
@@ -60,13 +63,26 @@ export function fetchAllTodos() {
 
   allProjects.forEach((project) => {
     let li = document.createElement("li");
+    li.classList.add("todo-card-compact");
     let h3 = document.createElement("h3");
     h3.innerHTML = project.projectName;
 
     project.todos.forEach((todo) => {
       let p = document.createElement("p");
+      let check = document.createElement("input");
+      check.type = "checkbox";
+      check.checked = todo.isCompleted;
+      check.classList.add("toggleTodoCheckBox");
+      p.classList.add("todoTitle-compact");
       p.innerText = todo.title;
+      if(todo.isCompleted) {
+        p.style.textDecoration = "line-through"
+      } else {
+        p.style.textDecoration = "none"
+      }
+      li.appendChild(check);
       li.appendChild(p);
+      check.addEventListener("click", () => toggleTodo(todo.id));
     });
     todoList.appendChild(h3);
     todoList.appendChild(li);
@@ -79,8 +95,16 @@ document.getElementById("show-all-todos").addEventListener("click", () => {
 
 const showTodoDialogBtn = document.getElementById("add-todos");
 const closeTodoDialogBtn = document.getElementById("js-close");
+const closeEditTodoDialogBtn = document.getElementById("js-close2");
 const todoDialog = document.getElementById("todo-dialog");
 const editTodoDialog = document.getElementById("edit-todo-dialog");
+// const toggleTodoBtn = document.querySelector(".toggleTodoCheckBox");
+// let todoTitleCompact = document.querySelector(".todoTitle-compact");
+
+function toggleTodo(TodoId){
+  app.toggleTodo(TodoId)
+  fetchAllTodos()
+}
 
 showTodoDialogBtn.addEventListener("click", () => {
   todoDialog.show();
@@ -91,10 +115,15 @@ closeTodoDialogBtn.addEventListener("click", (e) => {
   e.preventDefault();
   todoDialog.close();
 });
+closeEditTodoDialogBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  editTodoDialog.close();
+});
 
 function fetchProjectsTodoForm(selectId) {
   const allProjects = app.allProjects;
   const selectProject = document.getElementById(selectId);
+  selectProject.innerHTML = "";
   allProjects.forEach((project) => {
     const option = document.createElement("option");
     option.value = project.projectId;

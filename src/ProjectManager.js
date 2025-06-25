@@ -75,4 +75,21 @@ export default class ProjectManager {
     currentProject.projectName = name;
     // console.log(this.allProjects);
   }
+
+  searchTodoById(id) {
+    for (const project of this.allProjects) {
+      const found = project.todos.find((todo) => todo.id === id);
+      if (found) return found;
+    }
+    return null; // or undefined, if not found
+  }
+
+  toggleTodo(id) {
+    const todo = this.searchTodoById(id);
+    if (todo) {
+      todo.toggleTodo(); // calls the method inside the Todo class
+      return todo;
+    }
+    return null;
+  }
 }
