@@ -10,20 +10,32 @@
     <title>TOP - Todolist</title>
   </head>
   <body>
-    <header class="navbar">navbar</header>
+    <header class="navbar"> TheOdinProject - TodoList</header>
     <div class="container">
       <div class="panel">
-        <div class="todo-button-container">
-          <button id="show-all-todos">Show All Todos</button>
-          <button id="add-todos">Add Todo</button>
+        <div class="small-container">
+          <span style="display: flex; flex-direction: row; gap: 1rem; align-items: center; border-bottom: 1px solid white; padding-bottom: 1rem;">
+            <img id="TheOdinProject" src="../public/odin-lined.png" alt="TheOdinProject" style="width: 60px;">
+            <h1 style="margin: 0; font-size: 5em;">Todo.js</h1>
+          </span>
+          
+          <h2>Manage your Todos</h2>
+            <div class="todo-button-container">
+              
+              <button id="show-all-todos">Show All Todos</button>
+              <button id="add-todos">Add Todo</button>
+            </div>
+          <h2>Projects 👇</h2>
+          <ul class="project-list"></ul>
         </div>
+        
         <form id="project" method="get">
           <!-- <label for="project-title">Add Project: </label> -->
-          <input id="project-title" name="pName" />
+          <input id="project-title" name="pName" required/>
           <button type="submit">Add Project</button>
         </form>
         
-        <ul class="project-list"></ul>
+        
         
       </div>
 
@@ -45,7 +57,7 @@
         </dialog>
         <dialog id="todo-dialog">
           <form id="todo-form" method="dialog">
-            <p>
+            
               <label>
                 Title:
                 <input type="text" name="title" required />
@@ -76,7 +88,7 @@
                 Completed:
                 <input type="checkbox" name="completed"/>
               </label>
-            </p>
+            
             <div>
               <input type="button" id="js-close" value="Cancel" />
               <input type="submit" id="todoFormSubmitBtn" value="Confirm" />
@@ -85,7 +97,7 @@
         </dialog>
         <dialog id="edit-todo-dialog">
           <form id="edit-todo-form" method="dialog">
-            <p>
+            
               <label>
                 Title:
                 <input type="text" id="edit-todo-title" name="title" required />
@@ -116,7 +128,7 @@
                 Completed:
                 <input type="checkbox" id="edit-todo-isCompleted" name="completed"/>
               </label>
-            </p>
+            
             <div>
               <input type="button" id="js-close2" value="Cancel" />
               <input type="submit" id="todoFormSubmitBtn" value="Confirm" />

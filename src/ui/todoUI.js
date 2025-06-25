@@ -51,6 +51,19 @@ export function fetchTodosByProjectId(projectId) {
     div.appendChild(span2);
     div.appendChild(span3);
     li.appendChild(div);
+    if(todo.priority === "high"){
+        div.style.backgroundColor = "hsla(0 59.7% 54.3% / 0.7)"
+      } else if (todo.priority === "medium"){
+        div.style.backgroundColor = "hsl(57 100% 76.8%)"
+        div.style.color = "black"
+      } else {
+         div.style.backgroundColor = "hsla(205 90.5% 54.3% / 0.71)"
+      }
+
+      if(todo.isCompleted) {
+        div.style.backgroundColor = "hsl(120, 50%, 75%)"
+        div.style.color = "black"
+      } 
     editBtn.addEventListener("click", () => {
       editTodo(todo.id);
       setCurrentProjectId = todo.project;
@@ -94,8 +107,21 @@ export function fetchAllTodos() {
       check.classList.add("toggleTodoCheckBox");
       p.classList.add("todoTitle-compact");
       p.innerText = todo.title;
+      if(todo.priority === "high"){
+        div.style.backgroundColor = "hsla(0 59.7% 54.3% / 0.7)"
+        // div.style.color = "black"
+      } else if (todo.priority === "medium"){
+        div.style.backgroundColor = "hsl(57 100% 76.8%)"
+        div.style.color = "black"
+      } else {
+         div.style.backgroundColor = "hsla(205 90.5% 54.3% / 0.71)"
+        //  div.style.color = "black"
+      }
+
       if(todo.isCompleted) {
         p.style.textDecoration = "line-through"
+        div.style.backgroundColor = "hsl(120, 50%, 75%)"
+        div.style.color = "black"
       } else {
         p.style.textDecoration = "none"
       }
