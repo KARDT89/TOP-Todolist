@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>TOP - Todolist</title>
+  <script defer src="main.js"></script></head>
+  <body>
+    <!-- <header class="navbar"> <a href="https://github.com/KARDT89/TOP-Todolist" style="text-decoration: none; color: azure; letter-spacing: 0.2rem; font-weight: bold;">TheOdinProject - TodoList</a></header> -->
+    <div class="container">
+      <div class="panel">
+        <div class="small-container">
+          <span style="display: flex; flex-direction: row; gap: 1rem; align-items: center; border-bottom: 1px solid white; padding-bottom: 1rem;">
+            <img id="TheOdinProject" src="4f0f495b2f256748749f.png" alt="TheOdinProject" style="width: 50px;">
+            <h1 style="margin: 0; font-size: 4em; letter-spacing: 0.8rem;"><a href="https://github.com/KARDT89/TOP-Todolist" style="text-decoration: none; color: azure; font-weight: bold;" target="_blank">DTASK</a></h1>
+          </span>
+            <br>
+            <div class="todo-button-container">
+              
+              <button id="show-all-todos">Show All Todos</button>
+              <button id="add-todos">Add Todo</button>
+            </div>
+          <h2>Projects 👇</h2>
+          <ul class="project-list"></ul>
+        </div>
+        
+        <form id="project" method="get">
+          <!-- <label for="project-title">Add Project: </label> -->
+          <input id="project-title" name="pName" required/>
+          <button type="submit">Add Project</button>
+        </form>
+        
+        
+        
+      </div>
+
+      <div class="dashboard">
+        <dialog id="project-dialog">
+          <form id="project-form" method="dialog">
+            <p>
+              <label>
+                New Project Name:
+                <input type="text" id="newProjectName" name="pName" required />
+              </label>
+            </p>
+            <div>
+              <input type="button" id="project-edit-cancel" value="Cancel" />
+              <input type="submit" id="project-edit-confirm" value="Confirm" />
+            </div>
+          </form>
+        </dialog>
+        <dialog id="todo-dialog">
+          <form id="todo-form" method="dialog">
+            
+              <label>
+                Title:
+                <input type="text" name="title" required />
+              </label>
+              <label>
+                Description:
+                <input type="text" name="description" />
+              </label>
+              <label>
+                DueDate:
+                <input type="date" name="date" required />
+              </label>
+              <label>
+                Priority:
+                <select name="priority">
+                  <option value="low">Low</option>
+                  <option value="medium">Medium</option>
+                  <option value="high">High</option>
+                </select>
+              </label>
+              <label>
+                Project:
+                <select id="select-project" name="project">
+
+                </select>
+              </label>
+              <label>
+                Completed:
+                <input type="checkbox" name="completed"/>
+              </label>
+            
+            <div>
+              <input type="button" id="js-close" value="Cancel" />
+              <input type="submit" id="todoFormSubmitBtn" value="Confirm" />
+            </div>
+          </form>
+        </dialog>
+        <dialog id="edit-todo-dialog">
+          <form id="edit-todo-form" method="dialog">
+              <label>
+                Title:
+                <input type="text" id="edit-todo-title" name="title" required />
+              </label>
+              <label>
+                Description:
+                <input type="text" id="edit-todo-description" name="description" />
+              </label>
+              <label>
+                DueDate:
+                <input type="date" id="edit-todo-date" name="date" required />
+              </label>
+              <label>
+                Priority:
+                <select id="edit-todo-priority" name="priority">
+                  <option value="low">Low</option>
+                  <option value="medium">Medium</option>
+                  <option value="high">High</option>
+                </select>
+              </label>
+              <label>
+                Project:
+                <select id="select-edit-project" name="project">
+
+                </select>
+              </label>
+              <label>
+                Completed:
+                <input type="checkbox" id="edit-todo-isCompleted" name="completed"/>
+              </label>
+            
+            <div>
+              <input type="button" id="js-close2" value="Cancel" />
+              <input type="submit" id="todoFormSubmitBtn" value="Confirm" />
+            </div>
+          </form>
+        </dialog>
+        <ul class="todo-list"></ul>
+        
+      </div>
+    </div>
+    <footer>
+      <span>Made with ❤️ by</span>
+      <span id="dt89">DT89</span>
+    </footer>
+  </body>
+</html>
