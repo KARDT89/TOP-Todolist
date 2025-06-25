@@ -7,16 +7,19 @@ document.querySelector("#project").addEventListener("submit", (e) => {
   e.preventDefault();
   const pName = e.target["pName"].value;
   app.addProject(pName);
+  app.saveToLocalStorage();
   fetchProjects();
 });
 
 export function fetchProjects() {
   projectList.innerHTML = "";
+  const editProjectTitle = document.getElementById("newProjectName")
 
   //const projectEditConfirmBtn = dialog.querySelector("#project-edit-confirm");
   app.allProjects.forEach((project) => {
     let li = document.createElement("li");
     let projectName = document.createElement("button");
+    projectName.classList.add("projectNameBtn")
     projectName.innerText = project.projectName;
     let editBtn = document.createElement("button");
     editBtn.dataset.id = project.projectId;
@@ -34,19 +37,24 @@ export function fetchProjects() {
     deleteBtn.addEventListener("click", () => deleteProject(project.projectId));
     editBtn.addEventListener("click", function () {
       projectModal(editBtn.dataset.id);
+      editProjectTitle.value = project.projectName
     });
   });
 }
 
 function deleteProject(id) {
   app.deleteProject(id);
+  app.saveToLocalStorage();
   fetchProjects();
   fetchAllTodos();
+  
 }
 function editProject(id, name) {
   app.editProject(id, name);
+  app.saveToLocalStorage();
   fetchProjects();
   fetchAllTodos();
+  
 }
 
 const form = document.querySelector("#project-form");
@@ -56,7 +64,6 @@ const projectEditCancelBtn = dialog.querySelector("#project-edit-cancel");
 
 function projectModal(projectId) {
   setGlobalProjectId = projectId;
-
   dialog.show();
 }
 

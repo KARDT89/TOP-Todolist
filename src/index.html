@@ -10,18 +10,21 @@
     <title>TOP - Todolist</title>
   </head>
   <body>
-    <!-- <header class="navbar">navbar</header> -->
+    <header class="navbar">navbar</header>
     <div class="container">
       <div class="panel">
+        <div class="todo-button-container">
+          <button id="show-all-todos">Show All Todos</button>
+          <button id="add-todos">Add Todo</button>
+        </div>
         <form id="project" method="get">
-          <label for="project-title">Add Project: </label>
+          <!-- <label for="project-title">Add Project: </label> -->
           <input id="project-title" name="pName" />
           <button type="submit">Add Project</button>
         </form>
         
         <ul class="project-list"></ul>
-        <button id="show-all-todos">Show All Todos</button>
-        <button id="add-todos">Add Todo</button>
+        
       </div>
 
       <div class="dashboard">
@@ -31,7 +34,7 @@
             <p>
               <label>
                 New Project Name:
-                <input type="text" name="pName" required />
+                <input type="text" id="newProjectName" name="pName" required />
               </label>
             </p>
             <div>
@@ -85,19 +88,19 @@
             <p>
               <label>
                 Title:
-                <input type="text" name="title" required />
+                <input type="text" id="edit-todo-title" name="title" required />
               </label>
               <label>
                 Description:
-                <input type="text" name="description" />
+                <input type="text" id="edit-todo-description" name="description" />
               </label>
               <label>
                 DueDate:
-                <input type="date" name="date" required />
+                <input type="date" id="edit-todo-date" name="date" required />
               </label>
               <label>
                 Priority:
-                <select name="priority">
+                <select id="edit-todo-priority" name="priority">
                   <option value="low">Low</option>
                   <option value="medium">Medium</option>
                   <option value="high">High</option>
@@ -111,7 +114,7 @@
               </label>
               <label>
                 Completed:
-                <input type="checkbox" name="completed"/>
+                <input type="checkbox" id="edit-todo-isCompleted" name="completed"/>
               </label>
             </p>
             <div>

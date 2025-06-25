@@ -5,7 +5,7 @@ import "./style.css";
 
 const app = new ProjectManager();
 app.addProject();
-app.addProject("project-X");
+app.loadFromLocalStorage();
 // app.addProject("project-Z");
 // app.addTodo("todo1", "ddes1", "project-X");
 // app.addTodo("todo112", "ddes1", "project-X");

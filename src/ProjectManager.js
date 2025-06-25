@@ -92,4 +92,22 @@ export default class ProjectManager {
     }
     return null;
   }
+  saveToLocalStorage() {
+    localStorage.setItem("projects", JSON.stringify(this.allProjects));
+  }
+  loadFromLocalStorage(){
+    const data = localStorage.getItem("projects")
+    if(data) {
+      const rawProjects = JSON.parse(data)
+      this.allProjects = rawProjects.map((project) => {
+        project.todos = project.todos.map((todo) => ({
+          ...todo,
+          toggleTodo(){
+            this.isCompleted = !this.isCompleted;
+          }
+        }))
+        return project
+      })
+    }
+  }
 }

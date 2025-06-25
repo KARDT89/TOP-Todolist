@@ -1,12 +1,17 @@
-/* @import 'normalize.css';
+@import 'normalize.css';
 
 body {
-    color: white;
+    /* color: white; */
 }
 
 
 .navbar{
-    background-color: rgb(0, 0, 0);
+    display: flex;
+    /* background-color: rgb(0, 0, 0); */
+    padding: 1rem;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
 }
 
 .container{
@@ -15,11 +20,106 @@ body {
 }
 
 .panel {
-    width: 20%;
-    background-color: rgb(37, 37, 37);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    /* width: 15%; */
+    border-right: 1px solid rgb(0, 0, 0);
+    /* background-color: rgb(37, 37, 37); */
+    padding: 1rem;
 }
 
 .dashboard{
     width: 80%;
-    background-color: rgb(95, 95, 97);
-} */
+    /* background-color: rgb(95, 95, 97); */
+}
+
+button{
+    cursor: pointer;
+}
+
+li, .project-list {
+    padding: 0;
+    list-style-type: none;
+}
+
+.todo-card {
+    display: flex;
+}
+
+.todo-card-compact{
+    width: 20%;
+    gap: 1rem;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding-inline: 2rem;
+}
+.todo-list > li{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.todo-button-container{
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.todo-button-container > button {
+    flex: 1;
+   
+}
+.project-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: space-between;
+}
+.project-list > li {
+    display: flex;
+    gap: 0.5rem;
+}
+.projectNameBtn {
+    flex: 1;
+}
+
+.todo-card-default {
+    flex-direction: column;
+    width: 18%;
+    border: 1px solid black;
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+
+.todo-card-default > h2 {
+    font-size: 1rem;
+}
+
+
+.todo-card-default > :nth-child(1){
+    display: flex;
+    justify-content: space-between;
+    /* font-size: 0.8rem; */
+    border-bottom: 1px solid black;
+}
+
+.todo-card-default > :nth-child(3){
+    display: flex;
+    justify-content: space-between;
+    /* font-size: 0.8rem; */
+    
+}
+.todo-card-default > :nth-child(4){
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.todo-card-default > :nth-child(1) > h1, input{
+    margin: 0;
+}
+
+
+

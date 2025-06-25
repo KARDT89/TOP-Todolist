@@ -8,19 +8,27 @@ export function fetchTodosByProjectId(projectId) {
   todoList.innerHTML = "";
   const currentProject = app.searchProjectById(projectId);
   let li = document.createElement("li");
+  // li.classList.add("todo-card", "todo-card-default")
   let h3 = document.createElement("h3");
   h3.innerHTML = currentProject.projectName;
   currentProject.todos.forEach((todo) => {
     let div = document.createElement("div");
-    div.classList.add("todo-card");
-    let title = document.createElement("p");
+    div.classList.add("todo-card", "todo-card-default");
+    let title = document.createElement("h1");
     let id = document.createElement("p");
-    let description = document.createElement("p");
+    let description = document.createElement("h2");
     let priority = document.createElement("p");
     let date = document.createElement("p");
     let isCompleted = document.createElement("input");
     let editBtn = document.createElement("button");
     let deleteBtn = document.createElement("button");
+    let span1 = document.createElement("span");
+    let span2 = document.createElement("span");
+    let span3 = document.createElement("span");
+    let span4 = document.createElement("span");
+  
+    let markAsCompleted = document.createElement("p");
+    markAsCompleted.innerText = "Mark as Completed"
     editBtn.innerText = "Edit Todo";
     editBtn.dataset.id = todo.id;
     deleteBtn.innerText = "Delete Todo";
@@ -32,24 +40,33 @@ export function fetchTodosByProjectId(projectId) {
     description.textContent = todo.description;
     priority.textContent = todo.priority;
     date.textContent = todo.date;
-    li.appendChild(id);
-    li.appendChild(title);
-    li.appendChild(description);
-    li.appendChild(priority);
-    li.appendChild(date);
-    li.appendChild(isCompleted);
-    li.appendChild(editBtn);
-    li.appendChild(deleteBtn);
-    div.appendChild(li);
+    span1.appendChild(title)
+    span1.appendChild(isCompleted)
+    div.appendChild(span1);
+    div.appendChild(description);
+    span2.append(priority)
+    span2.append(date)
+    span3.appendChild(editBtn)
+    span3.appendChild(deleteBtn)
+    div.appendChild(span2);
+    div.appendChild(span3);
+    li.appendChild(div);
     editBtn.addEventListener("click", () => {
       editTodo(todo.id);
       setCurrentProjectId = todo.project;
+      document.getElementById("edit-todo-title").value = todo.title
+      document.getElementById("edit-todo-description").value = todo.description
+      document.getElementById("edit-todo-date").value = todo.date
+      document.getElementById("edit-todo-priority").value = todo.priority
+      document.getElementById("select-edit-project").value = todo.project
+      document.getElementById("edit-todo-isCompleted").value = todo.isCompleted
     });
     isCompleted.addEventListener("click", () => {
-      toggleTodo(todo.id)
+      toggleTodo2(todo.id)
     });
     deleteBtn.addEventListener("click", () => {
       app.deleteTodo(todo.id, todo.project);
+      app.saveToLocalStorage();
       fetchAllTodos();
     });
   });
@@ -63,11 +80,13 @@ export function fetchAllTodos() {
 
   allProjects.forEach((project) => {
     let li = document.createElement("li");
-    li.classList.add("todo-card-compact");
+    // li.classList.add("todo-card-compact");
     let h3 = document.createElement("h3");
     h3.innerHTML = project.projectName;
 
     project.todos.forEach((todo) => {
+      let div = document.createElement("div");
+      div.classList.add("todo-card", "todo-card-compact");
       let p = document.createElement("p");
       let check = document.createElement("input");
       check.type = "checkbox";
@@ -80,8 +99,9 @@ export function fetchAllTodos() {
       } else {
         p.style.textDecoration = "none"
       }
-      li.appendChild(check);
-      li.appendChild(p);
+      div.appendChild(check);
+      div.appendChild(p);
+      li.appendChild(div)
       check.addEventListener("click", () => toggleTodo(todo.id));
     });
     todoList.appendChild(h3);
@@ -103,7 +123,13 @@ const editTodoDialog = document.getElementById("edit-todo-dialog");
 
 function toggleTodo(TodoId){
   app.toggleTodo(TodoId)
+  app.saveToLocalStorage();
   fetchAllTodos()
+}
+
+function toggleTodo2(TodoId){
+  app.toggleTodo(TodoId)
+  app.saveToLocalStorage();
 }
 
 showTodoDialogBtn.addEventListener("click", () => {
@@ -143,6 +169,7 @@ todoForm.addEventListener("submit", (e) => {
   let project = e.target["project"].value;
   let isCompleted = e.target["completed"].checked;
   app.addTodo(title, description, date, priority, project, isCompleted);
+  app.saveToLocalStorage();
   fetchAllTodos();
   todoDialog.close();
 });
@@ -165,6 +192,7 @@ editTodoForm.addEventListener("submit", (e) => {
     project,
     isCompleted
   );
+  app.saveToLocalStorage();
   fetchAllTodos();
   editTodoDialog.close();
 });
